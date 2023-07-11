@@ -13,10 +13,10 @@ export class Cat {
 
   @Prop({
     required: true,
-    minlength: 1,
-    maxlength: 64,
+    min: 1,
+    max: 30,
   })
-  age: string;
+  age: number;
 
   @Prop({
     required: true,
