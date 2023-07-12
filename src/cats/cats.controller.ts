@@ -18,6 +18,9 @@ export class CatsController {
     return;
   }
 
+  /**
+   * We need a custom parseobjectid pipe here
+   */
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return;
@@ -28,6 +31,9 @@ export class CatsController {
     return;
   }
 
+  /**
+   * We need a custom parseobjectid pipe here
+   */
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number) {
     return;
