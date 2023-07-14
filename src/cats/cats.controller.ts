@@ -25,7 +25,7 @@ export class CatsController {
    * We need a custom parseobjectid pipe here
    */
   @Get(':id')
-  findOne(@Param('id') id: ObjectId): Promise<CatDocument> {
+  findById(@Param('id') id: string): Promise<CatDocument> {
     return this.catsService.findOne(id);
   }
 
@@ -38,7 +38,7 @@ export class CatsController {
    * We need a custom parseobjectid pipe here
    */
   @Delete(':id')
-  remove(@Param('id') id: ObjectId): Promise<CatDocument> {
+  remove(@Param('id') id: string): Promise<CatDocument> {
     return this.catsService.remove(id);
   }
 }
