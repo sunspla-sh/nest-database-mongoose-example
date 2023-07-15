@@ -4,6 +4,7 @@ import { createMock, DeepMocked } from '@golevelup/ts-jest';
 import { Model, Types } from 'mongoose';
 import { OwnersService } from './owners.service';
 import { Owner } from './schemas/owner.schema';
+import { CreateOwnerDto } from './create-owner.dto';
 
 describe('OwnersService', () => {
   let ownersService: OwnersService;
@@ -61,19 +62,19 @@ describe('OwnersService', () => {
       expect(ownersService.findById).toEqual(expect.any(Function));
     });
 
-    it('should invoke the static findById method of owner model', () => {
+    it('should invoke the static findById method of owner model with a string argument', () => {
       const id = new Types.ObjectId().toString();
       ownersService.findById(id);
       expect(ownerModel.findById).toHaveBeenCalled();
     });
 
-    it('should invoke the exec method of the query returned by calling the static findById method of owner model', () => {
+    it('should invoke the exec method of the query returned by calling the static findById method of owner model with a string argument', () => {
       const id = new Types.ObjectId().toString();
       ownersService.findById(id);
       expect(ownerModel.findById(id).exec).toHaveBeenCalled();
     });
 
-    it('should return the result of invoking exec method of the the query returned by calling the static findById method of owner model', () => {
+    it('should return the result of invoking exec method of the the query returned by calling the static findById method of owner model with a string argument', () => {
       const id = new Types.ObjectId().toString();
       expect(ownerModel.findById(id).exec).toHaveReturnedWith(
         ownersService.findById(id),
@@ -85,11 +86,43 @@ describe('OwnersService', () => {
     it('should be a method', () => {
       expect(ownersService.create).toEqual(expect.any(Function));
     });
+
+    it('should invoke the static create method of owner model with a CreateOwnerDto argument', () => {
+      const createOwnerDto = new CreateOwnerDto();
+      ownersService.create(createOwnerDto);
+      expect(ownerModel.create).toHaveBeenCalledWith(createOwnerDto);
+    });
+
+    it('should return the result of invoking the static create method of owner model with a CreateOwnerDto argument', () => {
+      const createOwnerDto = new CreateOwnerDto();
+      expect(ownerModel.create).toHaveReturnedWith(
+        ownersService.create(createOwnerDto),
+      );
+    });
   });
 
   describe('remove', () => {
     it('should be a method', () => {
       expect(ownersService.remove).toEqual(expect.any(Function));
+    });
+
+    it('should invoke the static findByIdAndDelete method of owner model with a string argument', () => {
+      const id = new Types.ObjectId().toString();
+      ownersService.remove(id);
+      expect(ownerModel.findByIdAndDelete).toHaveBeenCalledWith(id);
+    });
+
+    it('should invoke the exec method of the query returned by calling the static findByIdAndDelete method of owner model with a string argument', () => {
+      const id = new Types.ObjectId().toString();
+      ownersService.remove(id);
+      expect(ownerModel.findByIdAndDelete(id).exec).toHaveBeenCalled();
+    });
+
+    it('should return the result of invoking the exec method of the query returned by calling the static findByIdAndDelete method of owner model with a string argument', () => {
+      const id = new Types.ObjectId().toString();
+      expect(ownerModel.findByIdAndDelete(id).exec).toHaveReturnedWith(
+        ownersService.remove(id),
+      );
     });
   });
 });
