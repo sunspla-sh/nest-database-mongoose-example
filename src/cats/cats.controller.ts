@@ -26,7 +26,7 @@ export class CatsController {
    */
   @Get(':id')
   findById(@Param('id') id: string): Promise<CatDocument> {
-    return this.catsService.findOne(id);
+    return this.catsService.findById(id);
   }
 
   @Post()
