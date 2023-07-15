@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Owner, OwnerSchema } from './schemas/owner.schema';
 import { OwnersController } from './owners.controller';
-import { OwnerService } from './owners.service';
+import { OwnersService } from './owners.service';
 
 @Module({
   imports: [

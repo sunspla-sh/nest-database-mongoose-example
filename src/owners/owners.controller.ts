@@ -15,8 +15,8 @@ export class OwnersController {
   /**
    * Need custom ParseObjectId pipe here
    */
-  @Get('id')
-  findById(@Param(':id') id: string) {
+  @Get(':id')
+  findById(@Param('id') id: string) {
     return this.ownersService.findById(id);
   }
 
@@ -25,8 +25,11 @@ export class OwnersController {
     return this.ownersService.create(createOwnerDto);
   }
 
-  @Delete('id')
-  remove(@Param(':id') id: string) {
+  /**
+   * Need custom ParseObjectId pipe here
+   */
+  @Delete(':id')
+  remove(@Param('id') id: string) {
     return this.ownersService.remove(id);
   }
 }
