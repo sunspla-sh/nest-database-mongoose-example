@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
-// import { Cat } from '../../cats/schemas/cat.schema';
+import { Cat } from '../../cats/schemas/cat.schema';
 
 @Schema()
 export class Owner {
@@ -18,10 +18,10 @@ export class Owner {
   })
   lastName: string;
 
-  // @Prop({
-  //   type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Cat' }],
-  // })
-  // cats: Cat[];
+  @Prop({
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Cat' }],
+  })
+  cats: Cat[];
 }
 
 export const OwnerSchema = SchemaFactory.createForClass(Owner);
