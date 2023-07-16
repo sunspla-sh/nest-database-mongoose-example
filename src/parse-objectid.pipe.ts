@@ -4,14 +4,14 @@ import {
   ArgumentMetadata,
   BadRequestException,
 } from '@nestjs/common';
-import { isValidObjectId } from 'mongoose';
+import { isObjectIdOrHexString } from 'mongoose';
 
 @Injectable()
 export class ParseObjectIdPipe implements PipeTransform {
   transform(value: any, metadata: ArgumentMetadata) {
-    if (!isValidObjectId(value)) {
+    if (!isObjectIdOrHexString(value)) {
       throw new BadRequestException(
-        'Validation failed (ObjectId string is expected)',
+        'Validation failed (24 character ObjectId hex string is expected)',
       );
     }
     return value;
