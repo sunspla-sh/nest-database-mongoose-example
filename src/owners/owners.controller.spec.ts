@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { getModelToken } from '@nestjs/mongoose';
-import { Model, Types } from 'mongoose';
+import { Types } from 'mongoose';
 import { OwnersController } from './owners.controller';
 import { OwnersService } from './owners.service';
 import { createMock, DeepMocked } from '@golevelup/ts-jest';

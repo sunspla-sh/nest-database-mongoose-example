@@ -11,4 +11,4 @@ import { OwnersService } from './owners.service';
   controllers: [OwnersController],
   providers: [OwnersService],
 })
-export class OwnerModule {}
+export class OwnersModule {}
