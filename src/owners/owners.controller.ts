@@ -1,9 +1,10 @@
 import { Controller, Get, Post, Delete, Body, Param } from '@nestjs/common';
+import { ParseObjectIdPipe } from '../parse-objectid.pipe';
 import { OwnersService } from './owners.service';
 import { OwnerDocument } from './schemas/owner.schema';
 import { CreateOwnerDto } from './create-owner.dto';
 
-@Controller('owner')
+@Controller('owners')
 export class OwnersController {
   constructor(private ownersService: OwnersService) {}
 
@@ -16,7 +17,7 @@ export class OwnersController {
    * Need custom ParseObjectId pipe here
    */
   @Get(':id')
-  findById(@Param('id') id: string) {
+  findById(@Param('id', ParseObjectIdPipe) id: string) {
     return this.ownersService.findById(id);
   }
 
@@ -29,7 +30,7 @@ export class OwnersController {
    * Need custom ParseObjectId pipe here
    */
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseObjectIdPipe) id: string) {
     return this.ownersService.remove(id);
   }
 }

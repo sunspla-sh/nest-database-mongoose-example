@@ -1,13 +1,5 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Delete,
-  Param,
-  Body,
-  ParseIntPipe,
-} from '@nestjs/common';
-import { ObjectId } from 'mongoose';
+import { Controller, Get, Post, Delete, Param, Body } from '@nestjs/common';
+import { ParseObjectIdPipe } from 'src/parse-objectid.pipe';
 import { CatsService } from './cats.service';
 import { CatDocument } from './schemas/cat.schema';
 import { CreateCatDto } from './create-cat.dto';
@@ -25,7 +17,7 @@ export class CatsController {
    * We need a custom parseobjectid pipe here
    */
   @Get(':id')
-  findById(@Param('id') id: string): Promise<CatDocument> {
+  findById(@Param('id', ParseObjectIdPipe) id: string): Promise<CatDocument> {
     return this.catsService.findById(id);
   }
 
@@ -38,7 +30,7 @@ export class CatsController {
    * We need a custom parseobjectid pipe here
    */
   @Delete(':id')
-  remove(@Param('id') id: string): Promise<CatDocument> {
+  remove(@Param('id', ParseObjectIdPipe) id: string): Promise<CatDocument> {
     return this.catsService.remove(id);
   }
 }
